@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
   deploy:
-    name: Deploy
+    name: Build & Deploy
     runs-on: ubuntu-latest
     permissions:
       id-token: write # Needed for auth with Deno Deploy
@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build React App
-        run: npm run build --prefix client
+        run: cd client && npm run build
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
