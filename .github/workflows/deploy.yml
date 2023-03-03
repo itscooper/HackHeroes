@@ -21,17 +21,19 @@ jobs:
       - run: npm ci
 
       - run: npm run build --if-present
-      
+
       - run: npm test
 
       - name: Install Dependencies
         run: npm install
 
       - name: Install React Dependencies
-        run: cd client && npm install
+        working-directory: ./client
+        run: npm install
 
       - name: Build React App
-        run: cd client && npm run build
+        working-directory: ./client
+        run: npm run build
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
